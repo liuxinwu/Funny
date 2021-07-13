@@ -14,6 +14,7 @@ class FTabbar extends StatelessWidget {
       onTap: (index) {
         setCurrentTab(index);
       },
+      selectedItemColor: Theme.of(context).primaryColor,
       items: [
       BottomNavigationBarItem(
         icon: Icon(Icons.home),

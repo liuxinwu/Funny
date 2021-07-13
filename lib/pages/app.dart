@@ -13,10 +13,13 @@ class _AppState extends State<App> {
   int currentTab = 0;
 
   getBody() {
-    switch(currentTab) {
-      case 0: return Home();
-      case 1: return My();
-      default: return Home();
+    switch (currentTab) {
+      case 0:
+        return Home();
+      case 1:
+        return My();
+      default:
+        return Home();
     }
   }
 
@@ -29,15 +32,21 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
+    final double statusBarHeight = MediaQuery.of(context).padding.top;
+
     return Scaffold(
-      appBar: AppBar(
-        title: new Text('Funny'),
+      body: Column(
+        children: [
+          SizedBox(
+            height: statusBarHeight,
+          ),
+          new Expanded(
+            child: getBody(),
+          ),
+        ],
       ),
-      body: getBody(),
-      bottomNavigationBar: FTabbar(
-        currentTab: currentTab,
-        setCurrentTab: setCurrentTab
-      ),
+      bottomNavigationBar:
+          FTabbar(currentTab: currentTab, setCurrentTab: setCurrentTab),
     );
   }
 }
