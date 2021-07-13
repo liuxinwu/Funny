@@ -1,16 +1,8 @@
-import 'package:dio/dio.dart';
 import '/utils/request.dart';
+import './index.dart';
 
-Request request =
-    new Request(new BaseOptions(baseUrl: 'http://cms.daxjgxx.com'));
-
-final cmsRequest = {
-  'list': () {
-    return request.request('/api.php/provide/vod');
+class CmsApi {
+  static Future<ResponseData> getList({Map<String, dynamic>? queryParameters}) {
+    return cmsRequest.request('/api.php/provide/vod', queryParameters: queryParameters);
   }
 }
-
-
-// request.request('/api.php/provide/vod/', queryParameters: {
-//           'ac': 'list'
-//         });

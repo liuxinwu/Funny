@@ -8,9 +8,9 @@ class Home extends StatelessWidget {
       child: GestureDetector(
         child: Text('Home'),
         onTap: () async {
-          print(cmsRequest['list']);
-          // final res = await api.requst();
-          // print(res);
+          final res = await CmsApi.getList(queryParameters: {'ac': 'list', 'pg': 2 });
+          print('index.dart');
+          print(res.data);
         },
       ),
     );
