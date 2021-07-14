@@ -39,6 +39,8 @@ class _AppState extends State<App> {
         children: [
           SizedBox(
             height: statusBarHeight,
+            child:
+                Container(child: null, color: Color.fromARGB(255, 217, 70, 59)),
           ),
           new Expanded(
             child: getBody(),
