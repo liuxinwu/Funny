@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
-import '/api/cmsApi.dart';
 import './components/head.dart';
+import './components/classify.dart';
+import 'package:funny/components/fSwiper.dart';
 
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Head(),
+        Wrap(
+          children: [Head(), Classify()],
+        ),
         new Expanded(
-          child: Center(
-            child: GestureDetector(
-              child: Text('Home'),
-              onTap: () async {
-                final res = await CmsApi.getList(
-                    queryParameters: {'ac': 'list', 'pg': 2});
-                print('index.dart');
-                print(res.data);
-              },
-            ),
+          child: ListView(
+            padding: EdgeInsets.all(0),
+            children: [
+              // swiper 不加高度报错
+              Container(
+                height: 200,
+                child: FSwiper(),
+              ),
+            ],
           ),
         )
       ],
