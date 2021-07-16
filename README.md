@@ -5,3 +5,4 @@
 # 坑点
     - Cannot run with sound null safety, because the following dependencies don't support null safety （空安全）
         > https://dart.dev/null-safety/unsound-null-safety
+        > Andriod Studio -> Run -> Edit Config... -> Flutter -> main.dart -> Additional run args  "--no-sound-null-safety"

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './components/head.dart';
 import './components/classify.dart';
 import 'package:funny/components/fSwiper.dart';
+import './components/links.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -20,6 +21,7 @@ class Home extends StatelessWidget {
                 height: 200,
                 child: FSwiper(),
               ),
+              Links()
             ],
           ),
         )
