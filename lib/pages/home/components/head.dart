@@ -6,7 +6,7 @@ class Head extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         height: 48,
-        color: Color.fromARGB(255, 217, 70, 59),
+        color: Theme.of(context).primaryColor,
         child: Padding(
           padding: EdgeInsets.only(left: 8, right: 8),
           child: Row(

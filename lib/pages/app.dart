@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '/components/fTabbar.dart';
+import '/components/fTabBar.dart';
 import '/pages/home/index.dart';
 import '/pages/my/index.dart';
 
-// 包含 tabbar 的容器
+// 包含 tabBar 的容器
 class App extends StatefulWidget {
   @override
   _AppState createState() => new _AppState();
@@ -40,7 +40,7 @@ class _AppState extends State<App> {
           SizedBox(
             height: statusBarHeight,
             child:
-                Container(child: null, color: Color.fromARGB(255, 217, 70, 59)),
+                Container(child: null, color: Theme.of(context).primaryColor),
           ),
           new Expanded(
             child: getBody(),
@@ -48,7 +48,7 @@ class _AppState extends State<App> {
         ],
       ),
       bottomNavigationBar:
-          FTabbar(currentTab: currentTab, setCurrentTab: setCurrentTab),
+          FTabBar(currentTab: currentTab, setCurrentTab: setCurrentTab),
     );
   }
 }

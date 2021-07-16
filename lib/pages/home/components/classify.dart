@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:funny/utils/iconfont.dart';
 
 class Classify extends StatefulWidget {
   _ClassifyState createState() => new _ClassifyState();
@@ -39,39 +40,61 @@ class _ClassifyState extends State {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: double.infinity,
-        color: Color.fromARGB(255, 217, 70, 59),
-        child: Scrollbar(
-            controller: ScrollController(initialScrollOffset: 0),
-            child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                padding: EdgeInsets.all(8),
-                child: Center(
-                  child: Row(
-                    children: classifyList
-                        .map(
-                          (item) => Padding(
-                            padding: EdgeInsets.fromLTRB(8, 5, 8, 10),
-                            child: GestureDetector(
-                              onTap: () => handleTap(item['type_id']),
-                              child: AnimatedDefaultTextStyle(
-                                duration: Duration(milliseconds: 200),
-                                style: currentClassify == item['type_id']
-                                    ? TextStyle(
-                                        fontSize: 30,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold)
-                                    : TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w700,
-                                        color: Colors.white60),
-                                child: Text(item['type_name']),
-                              ),
-                            ),
-                          ),
-                        )
-                        .toList(),
-                  ),
-                ))));
+        color: Theme.of(context).primaryColor,
+        child: Row(
+          children: [
+            Expanded(
+                child: Scrollbar(
+                    controller: ScrollController(initialScrollOffset: 0),
+                    child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        padding: EdgeInsets.all(8),
+                        child: Row(
+                          children: classifyList
+                              .map(
+                                (item) => Padding(
+                                  padding: EdgeInsets.fromLTRB(8, 5, 8, 10),
+                                  child: GestureDetector(
+                                    onTap: () => handleTap(item['type_id']),
+                                    child: AnimatedDefaultTextStyle(
+                                      duration: Duration(milliseconds: 200),
+                                      style: currentClassify == item['type_id']
+                                          ? TextStyle(
+                                              fontSize: 30,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold)
+                                          : TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w700,
+                                              color: Colors.white60),
+                                      child: Text(item['type_name']),
+                                    ),
+                                  ),
+                                ),
+                              )
+                              .toList(),
+                        )))),
+            GestureDetector(
+              onTap: () => {print('更多')},
+              child: Container(
+                width: 33,
+                height: 25,
+                color: Theme.of(context).primaryColor,
+                child: Stack(
+                  children: [
+                    Positioned(
+                        top: -5,
+                        right: 3,
+                        child: Icon(
+                          FIcons.more,
+                          size: 30,
+                          color: Colors.white70,
+                        ))
+                  ],
+                ),
+              ),
+            )
+          ],
+        ));
   }
 }

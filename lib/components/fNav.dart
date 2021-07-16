@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:funny/utils/iconfont.dart';
 
 class FNav extends StatelessWidget {
   @override
@@ -10,10 +11,10 @@ class FNav extends StatelessWidget {
         children: [
           Text(
             '猜你喜欢',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
           ),
           Icon(
-            Icons.radar_rounded,
+            FIcons.gt,
             color: Colors.black,
           )
         ],
