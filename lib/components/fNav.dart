@@ -5,7 +5,7 @@ class FNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+      padding: EdgeInsets.all(10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -15,7 +15,7 @@ class FNav extends StatelessWidget {
           ),
           Icon(
             FIcons.gt,
-            color: Colors.black,
+            color: Colors.black54,
           )
         ],
       ),

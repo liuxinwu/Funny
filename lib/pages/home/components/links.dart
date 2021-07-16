@@ -13,7 +13,7 @@ class Links extends StatelessWidget {
                 padding: EdgeInsets.only(right: 5),
                 child: FVideoCard(
                     url:
-                        'https://m.ykimg.com/0527000060EBFAB213EA3508D5A14108'),
+                        'https://cms.daxjgxx.com//upload//vod//20210716-1//743f14a4c3c23caf4505a34d236d3f8f.jpg'),
               ),
             ))
         .toList();

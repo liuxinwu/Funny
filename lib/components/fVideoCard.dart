@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
 class FVideoCard extends StatelessWidget {
-  FVideoCard({Key? key, required String this.url}) : super(key: key);
+  FVideoCard(
+      {Key? key, required String this.url, double this.maxHeight = 160.0})
+      : super(key: key);
 
   final url;
+  final maxHeight;
 
   @override
   Widget build(BuildContext context) {
@@ -11,9 +14,15 @@ class FVideoCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Image.network(
-          url,
-          fit: BoxFit.cover,
+        Container(
+          constraints: BoxConstraints(
+            maxHeight: maxHeight,
+          ),
+          child: Image.network(
+            url,
+            fit: BoxFit.fitWidth,
+            width: MediaQuery.of(context).size.width,
+          ),
         ),
         Padding(
           padding: EdgeInsets.only(left: 10),
