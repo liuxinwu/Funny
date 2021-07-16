@@ -14,16 +14,11 @@ class FTabbar extends StatelessWidget {
       onTap: (index) {
         setCurrentTab(index);
       },
-      selectedItemColor: Theme.of(context).primaryColor,
+      // selectedItemColor: Theme.of(context).primaryColor,
       items: [
-      BottomNavigationBarItem(
-        icon: Icon(Icons.home),
-        label: '首页'
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.my_location),
-        label: '我的'
-      )
-    ],);
+        BottomNavigationBarItem(icon: Icon(Icons.home), label: '首页'),
+        BottomNavigationBarItem(icon: Icon(Icons.my_location), label: '我的')
+      ],
+    );
   }
 }

@@ -7,7 +7,7 @@ class FSwiper extends StatelessWidget {
     return new Swiper(
       itemBuilder: (BuildContext context, int index) {
         return new Image.network(
-          "https://public-static-edu.codemao.cn/upload/1550226072000/%E5%B9%B3%E5%8F%B0%E8%A7%86%E9%A2%91banner2.png",
+          "https://liangcang-material.alicdn.com/prod/upload/9d03bc5ccc5c471bb096ba21f3173f48.jpg?x-oss-process=image/resize,w_750/interlace,1",
           fit: BoxFit.fill,
         );
       },
