@@ -5,7 +5,7 @@ class FTabBar extends StatelessWidget {
   FTabBar({Key? key, required this.currentTab, required this.setCurrentTab})
       : super(key: key);
 
-  static const double _iconSize = 20;
+  static const double _iconSize = 18;
 
   final int currentTab;
   final Function setCurrentTab;

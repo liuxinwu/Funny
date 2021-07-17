@@ -46,6 +46,24 @@ class ClassifyBlock extends StatelessWidget {
                           'https://cms.daxjgxx.com//upload//vod//20210716-1//743f14a4c3c23caf4505a34d236d3f8f.jpg'),
                 ),
               ),
+              SizedBox(
+                width: computedWidth(width),
+                child: Padding(
+                  padding: EdgeInsets.only(right: _spacing),
+                  child: FVideoCard(
+                      url:
+                      'https://cms.daxjgxx.com//upload//vod//20210716-1//743f14a4c3c23caf4505a34d236d3f8f.jpg'),
+                ),
+              ),
+              SizedBox(
+                width: computedWidth(width),
+                child: Padding(
+                  padding: EdgeInsets.only(left: _spacing),
+                  child: FVideoCard(
+                      url:
+                      'https://cms.daxjgxx.com//upload//vod//20210716-1//743f14a4c3c23caf4505a34d236d3f8f.jpg'),
+                ),
+              ),
             ],
           ),
         )

@@ -14,18 +14,27 @@ class Home extends StatelessWidget {
           children: [Head(), Classify()],
         ),
         new Expanded(
-          child: ListView(
+          child: ListView.builder(
+            itemCount: 1,
             padding: EdgeInsets.all(0),
-            children: [
-              // swiper 不加高度报错
-              Container(
-                height: 200,
-                child: FSwiper(),
-              ),
-              Links(),
-              ClassifyBlock(),
-              ClassifyBlock()
-            ],
+            itemBuilder: (BuildContext context, int index) {
+              print(index);
+              if (index >= 1) {
+                return Container(child: Text('无更多'),);
+              }
+              return Wrap(
+                children: [
+                  // swiper 不加高度报错
+                  Container(
+                    height: 200,
+                    child: FSwiper(),
+                  ),
+                  Links(),
+                  ClassifyBlock(),
+                  ClassifyBlock()
+                ],
+              );
+            },
           ),
         )
       ],

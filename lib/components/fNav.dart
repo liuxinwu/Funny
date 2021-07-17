@@ -11,11 +11,12 @@ class FNav extends StatelessWidget {
         children: [
           Text(
             '猜你喜欢',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+            style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
           ),
           Icon(
             FIcons.gt,
             color: Colors.black54,
+            size: 14,
           )
         ],
       ),

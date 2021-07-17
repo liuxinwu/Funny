@@ -53,19 +53,19 @@ class _ClassifyState extends State {
                           children: classifyList
                               .map(
                                 (item) => Padding(
-                                  padding: EdgeInsets.fromLTRB(8, 5, 8, 10),
+                                  padding: EdgeInsets.fromLTRB(8, 0, 8, 5),
                                   child: GestureDetector(
                                     onTap: () => handleTap(item['type_id']),
                                     child: AnimatedDefaultTextStyle(
                                       duration: Duration(milliseconds: 200),
                                       style: currentClassify == item['type_id']
                                           ? TextStyle(
-                                              fontSize: 30,
+                                              fontSize: 20,
                                               color: Colors.white,
                                               fontWeight: FontWeight.bold)
                                           : TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.w700,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
                                               color: Colors.white60),
                                       child: Text(item['type_name']),
                                     ),
@@ -83,11 +83,11 @@ class _ClassifyState extends State {
                 child: Stack(
                   children: [
                     Positioned(
-                        top: -5,
+                        top: -4,
                         right: 3,
                         child: Icon(
                           FIcons.more,
-                          size: 30,
+                          size: 25,
                           color: Colors.white70,
                         ))
                   ],

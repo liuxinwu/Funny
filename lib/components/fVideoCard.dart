@@ -29,8 +29,8 @@ class FVideoCard extends StatelessWidget {
           child: Text(
             '我的邻居长不大',
             style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w700,
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
               color: Colors.black,
               height: 2,
             ),
@@ -41,7 +41,7 @@ class FVideoCard extends StatelessWidget {
           child: Text(
             '年下小狼狗追御姐',
             style: TextStyle(
-                fontSize: 13,
+                fontSize: 10,
                 color: Color.fromRGBO(153, 153, 153, 1),
                 height: 1.3),
           ),
