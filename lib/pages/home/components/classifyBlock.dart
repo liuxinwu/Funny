@@ -12,7 +12,6 @@ class ClassifyBlock extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final width = size.width;
-    final height = size.height;
 
     return Column(
       children: [
@@ -20,7 +19,6 @@ class ClassifyBlock extends StatelessWidget {
         FVideoCard(
           url:
               'https://cms.daxjgxx.com//upload//vod//20210716-1//743f14a4c3c23caf4505a34d236d3f8f.jpg',
-          maxHeight: height / 3,
         ),
         Padding(
           padding: EdgeInsets.only(top: 10),

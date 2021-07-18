@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import './components/head.dart';
-import './components/classify.dart';
+import 'package:funny/components/fLinksVideo.dart';
 import 'package:funny/components/fSwiper.dart';
-import './components/links.dart';
+
+import './components/classify.dart';
 import './components/classifyBlock.dart';
+import './components/head.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -20,7 +21,9 @@ class Home extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               print(index);
               if (index >= 1) {
-                return Container(child: Text('无更多'),);
+                return Container(
+                  child: Text('无更多'),
+                );
               }
               return Wrap(
                 children: [
@@ -29,7 +32,7 @@ class Home extends StatelessWidget {
                     height: 200,
                     child: FSwiper(),
                   ),
-                  Links(),
+                  FLinksVideo(),
                   ClassifyBlock(),
                   ClassifyBlock()
                 ],

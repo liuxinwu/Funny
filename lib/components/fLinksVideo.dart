@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:funny/components/fNav.dart';
 import 'package:funny/components/fVideoCard.dart';
 
-class Links extends StatelessWidget {
-  List list = [];
+class FLinksVideo extends StatelessWidget {
+  List _list = [];
 
   List<Widget> getList() {
-    return list
+    return _list
         .map((item) => SizedBox(
               width: 150,
               child: Padding(
@@ -21,8 +21,8 @@ class Links extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    list.length = 8;
-    list.fillRange(0, 8, 1);
+    _list.length = 8;
+    _list.fillRange(0, 8, 1);
 
     return Wrap(
       children: [
