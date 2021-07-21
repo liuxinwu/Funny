@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:funny/components/fLinksVideo.dart';
+import 'package:funny/components/fHorizontalVideo.dart';
 import 'package:funny/components/fSwiper.dart';
+import 'package:funny/components/fNav.dart';
 
 import './components/classify.dart';
 import './components/classifyBlock.dart';
@@ -32,7 +33,14 @@ class Home extends StatelessWidget {
                     height: 200,
                     child: FSwiper(),
                   ),
-                  FLinksVideo(),
+                  FNav(
+                    title: '猜你喜欢',
+                    left: 16,
+                    right: 16,
+                  ),
+                  FHorizontalVideo(
+                    list: [1, 2, 3, 4, 5],
+                  ),
                   ClassifyBlock(),
                   ClassifyBlock()
                 ],

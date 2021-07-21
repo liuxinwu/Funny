@@ -15,7 +15,11 @@ class ClassifyBlock extends StatelessWidget {
 
     return Column(
       children: [
-        FNav(),
+        FNav(
+          title: '热播',
+          left: 16,
+          right: 16,
+        ),
         FVideoCard(
           url:
               'https://cms.daxjgxx.com//upload//vod//20210716-1//743f14a4c3c23caf4505a34d236d3f8f.jpg',
@@ -50,7 +54,7 @@ class ClassifyBlock extends StatelessWidget {
                   padding: EdgeInsets.only(right: _spacing),
                   child: FVideoCard(
                       url:
-                      'https://cms.daxjgxx.com//upload//vod//20210716-1//743f14a4c3c23caf4505a34d236d3f8f.jpg'),
+                          'https://cms.daxjgxx.com//upload//vod//20210716-1//743f14a4c3c23caf4505a34d236d3f8f.jpg'),
                 ),
               ),
               SizedBox(
@@ -59,7 +63,7 @@ class ClassifyBlock extends StatelessWidget {
                   padding: EdgeInsets.only(left: _spacing),
                   child: FVideoCard(
                       url:
-                      'https://cms.daxjgxx.com//upload//vod//20210716-1//743f14a4c3c23caf4505a34d236d3f8f.jpg'),
+                          'https://cms.daxjgxx.com//upload//vod//20210716-1//743f14a4c3c23caf4505a34d236d3f8f.jpg'),
                 ),
               ),
             ],

@@ -2,15 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:funny/utils/iconfont.dart';
 
 class FNav extends StatelessWidget {
+  FNav({required this.title, this.left = 0, this.right = 0});
+
+  final String title;
+  final double left;
+  final double right;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.fromLTRB(left, 10, right, 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            '猜你喜欢',
+            title,
             style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
           ),
           Icon(

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:funny/components/fLinksVideo.dart';
+import 'package:funny/components/fHorizontalVideo.dart';
 import 'package:funny/components/fPlayer.dart';
 import 'package:funny/pages/video-detail/components/videoCollection.dart';
+import 'package:funny/components/fNav.dart';
 
 import 'components/playVideoInfo.dart';
 
@@ -44,8 +45,11 @@ class _PlayPage extends State<PlayPage> {
                         print('集数');
                       },
                     ),
-                    FLinksVideo(),
-                    FLinksVideo(),
+                    FNav(title: '与该视频类型'),
+                    FHorizontalVideo(
+                      list: [1, 2],
+                    ),
+                    FHorizontalVideo(),
                   ],
                 ),
               )
