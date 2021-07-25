@@ -1,39 +1,31 @@
+// 父组件状态更新子组件不更新问题  https://www.jianshu.com/p/510c72cecf26
+
 import 'package:flutter/material.dart';
 import 'package:funny/utils/iconfont.dart';
 
 class Classify extends StatefulWidget {
-  _ClassifyState createState() => new _ClassifyState();
+  Classify({
+    Key? key,
+    required this.classifyList,
+  }) : super(key: key);
+
+  final List classifyList;
+
+  _ClassifyState createState() =>
+      new _ClassifyState(classifyList: classifyList);
 }
 
 class _ClassifyState extends State {
-  List classifyList = [
-    {"type_id": 1, "type_name": "电影"},
-    {"type_id": 2, "type_name": "连续剧"},
-    {"type_id": 3, "type_name": "综艺"},
-    {"type_id": 4, "type_name": "动漫"},
-    {"type_id": 5, "type_name": "资讯"},
-    {"type_id": 6, "type_name": "动作片"},
-    {"type_id": 7, "type_name": "喜剧片"},
-    {"type_id": 8, "type_name": "爱情片"},
-    {"type_id": 9, "type_name": "科幻片"},
-    {"type_id": 10, "type_name": "恐怖片"},
-    {"type_id": 11, "type_name": "剧情片"},
-    {"type_id": 12, "type_name": "战争片"},
-    {"type_id": 13, "type_name": "国产剧"},
-    {"type_id": 14, "type_name": "港台剧"},
-    {"type_id": 15, "type_name": "日韩剧"},
-    {"type_id": 16, "type_name": "欧美剧"},
-    {"type_id": 17, "type_name": "公告"},
-    {"type_id": 18, "type_name": "头条"},
-    {"type_id": 20, "type_name": "犯罪片"},
-    {"type_id": 21, "type_name": "大陆综艺"},
-    {"type_id": 22, "type_name": "日韩综艺"}
-  ];
-  int currentClassify = 1;
+  _ClassifyState({
+    required this.classifyList,
+  });
 
-  handleTap(int newClassify) {
+  final List classifyList;
+  int currentClassify = 0;
+
+  setCurrentClassify(int _currentClassify) {
     setState(() {
-      currentClassify = newClassify;
+      currentClassify = _currentClassify;
     });
   }
 
@@ -55,7 +47,8 @@ class _ClassifyState extends State {
                                 (item) => Padding(
                                   padding: EdgeInsets.fromLTRB(8, 0, 8, 5),
                                   child: GestureDetector(
-                                    onTap: () => handleTap(item['type_id']),
+                                    onTap: () =>
+                                        setCurrentClassify(item['type_id']),
                                     child: AnimatedDefaultTextStyle(
                                       duration: Duration(milliseconds: 200),
                                       style: currentClassify == item['type_id']

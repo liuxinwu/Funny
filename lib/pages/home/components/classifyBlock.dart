@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:funny/components/fVideoCard.dart';
 import 'package:funny/components/fNav.dart';
+import 'package:funny/components/fVideoCard.dart';
 
 class ClassifyBlock extends StatelessWidget {
+  ClassifyBlock({required this.title, required this.list});
+
+  final String title;
+  final List list;
+
   static const _spacing = 2.5;
   double computedWidth(width) {
     return width / 2;
@@ -12,61 +17,47 @@ class ClassifyBlock extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final width = size.width;
+    final firstVideo = list.take(1).toList();
+    final otherVideo = list.skip(1).toList();
 
     return Column(
       children: [
         FNav(
-          title: '热播',
+          title: title,
           left: 16,
           right: 16,
         ),
-        FVideoCard(
-          url:
-              'https://cms.daxjgxx.com//upload//vod//20210716-1//743f14a4c3c23caf4505a34d236d3f8f.jpg',
-        ),
+        ...(firstVideo.map((item) => FVideoCard(
+              id: item['vod_id'],
+              url: item['vod_pic'],
+              name: item['vod_name'],
+              desc: item['vod_actor'],
+              maxHeight: 200,
+            ))),
         Padding(
           padding: EdgeInsets.only(top: 10),
           child: Wrap(
             direction: Axis.horizontal,
             alignment: WrapAlignment.start,
-            children: [
-              SizedBox(
+            crossAxisAlignment: WrapCrossAlignment.start,
+            children: otherVideo.asMap().entries.map((entry) {
+              final item = entry.value;
+              final int index = entry.key;
+
+              return SizedBox(
                 width: computedWidth(width),
                 child: Padding(
-                  padding: EdgeInsets.only(right: _spacing),
+                  padding: EdgeInsets.only(
+                      right: index % 2 == 0 ? _spacing : 0,
+                      left: index % 2 != 0 ? _spacing : 0),
                   child: FVideoCard(
-                      url:
-                          'https://cms.daxjgxx.com//upload//vod//20210716-1//743f14a4c3c23caf4505a34d236d3f8f.jpg'),
+                      url: item['vod_pic'],
+                      name: item['vod_name'],
+                      desc: item['vod_actor'],
+                      id: item['vod_id']),
                 ),
-              ),
-              SizedBox(
-                width: computedWidth(width),
-                child: Padding(
-                  padding: EdgeInsets.only(left: _spacing),
-                  child: FVideoCard(
-                      url:
-                          'https://cms.daxjgxx.com//upload//vod//20210716-1//743f14a4c3c23caf4505a34d236d3f8f.jpg'),
-                ),
-              ),
-              SizedBox(
-                width: computedWidth(width),
-                child: Padding(
-                  padding: EdgeInsets.only(right: _spacing),
-                  child: FVideoCard(
-                      url:
-                          'https://cms.daxjgxx.com//upload//vod//20210716-1//743f14a4c3c23caf4505a34d236d3f8f.jpg'),
-                ),
-              ),
-              SizedBox(
-                width: computedWidth(width),
-                child: Padding(
-                  padding: EdgeInsets.only(left: _spacing),
-                  child: FVideoCard(
-                      url:
-                          'https://cms.daxjgxx.com//upload//vod//20210716-1//743f14a4c3c23caf4505a34d236d3f8f.jpg'),
-                ),
-              ),
-            ],
+              );
+            }).toList(),
           ),
         )
       ],

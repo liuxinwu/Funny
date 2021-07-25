@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:funny/components/FToast.dart';
 
@@ -74,9 +75,12 @@ class Request {
           options: options,
           onSendProgress: onSendProgress,
           onReceiveProgress: onReceiveProgress);
-      final data = jsonDecode(res.data);
+      final data = jsonDecode(res.toString())['data'];
       return ResponseData(res.statusCode ?? 200, 0, data, 'success');
     } catch (err) {
+      print('------- response err start -------');
+      print(err);
+      print('------- response err end -------');
       // 可以进行更详细的错误处理
       FToast.showToast(msg: '太火爆了，请稍后再试！');
       // 延迟
@@ -93,7 +97,7 @@ class Request {
 class ResponseData {
   int status;
   int code;
-  Map<String, dynamic> data;
+  dynamic data;
   String msg;
 
   ResponseData(this.status, this.code, this.data, this.msg);

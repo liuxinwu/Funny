@@ -15,8 +15,10 @@ class FHorizontalVideo extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(right: 5),
                 child: FVideoCard(
-                    url:
-                        'https://cms.daxjgxx.com//upload//vod//20210716-1//743f14a4c3c23caf4505a34d236d3f8f.jpg'),
+                    url: item['vod_pic'],
+                    name: item['vod_name'],
+                    desc: item['vod_actor'],
+                    id: item['vod_id']),
               ),
             ))
         .toList();

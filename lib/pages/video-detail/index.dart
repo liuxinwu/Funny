@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:funny/api/cmsApi.dart';
 import 'package:funny/pages/video-detail/components/videoCollection.dart';
 import 'package:funny/pages/video-detail/components/videoComment.dart';
 import 'package:funny/pages/video-detail/components/videoDesc.dart';
@@ -17,6 +18,23 @@ class _VideoDetailState extends State {
   _VideoDetailState({this.routeArgs}) : super();
 
   final routeArgs;
+  Map videoDetail = {};
+
+  getVideoDetail() async {
+    print(routeArgs);
+    final res =
+        await CmsApi.getDetail(queryParameters: {'ids': routeArgs['videoId']});
+    print(res.data.length);
+    setState(() {
+      videoDetail = res.data[0];
+    });
+  }
+
+  @override
+  void initState() {
+    this.getVideoDetail();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +50,17 @@ class _VideoDetailState extends State {
                 child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                VideoInfo(),
+                VideoInfo(data: videoDetail),
                 VideoCollection(
-                  handleClick: () {
-                    Navigator.pushNamed(context, 'videoPlayPage');
+                  data: videoDetail['vod_play_url'],
+                  handleClick: (index) {
+                    Navigator.pushNamed(context, 'videoPlayPage', arguments: {
+                      'collection': index,
+                      'videoId': routeArgs['videoId']
+                    });
                   },
                 ),
-                VideoDesc(),
+                VideoDesc(data: videoDetail['vod_blurb']),
                 VideoComment()
               ],
             ))),

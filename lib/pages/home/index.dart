@@ -1,19 +1,85 @@
 import 'package:flutter/material.dart';
+import 'package:funny/api/cmsApi.dart';
 import 'package:funny/components/fHorizontalVideo.dart';
-import 'package:funny/components/fSwiper.dart';
 import 'package:funny/components/fNav.dart';
+import 'package:funny/components/fSwiper.dart';
 
 import './components/classify.dart';
 import './components/classifyBlock.dart';
 import './components/head.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  List classifyList = [];
+  List linksList = [];
+  List<Map<String, dynamic>> homeList = [
+    {'title': '最新', 'list': []},
+    {'title': '热播电视剧', 'list': []},
+    {'title': '热播电影', 'list': []},
+  ];
+
+  getClassify() async {
+    final res = await CmsApi.getClassify();
+    setState(() {
+      classifyList = res.data;
+      classifyList.length = 8;
+    });
+  }
+
+  getLikes() async {
+    final res = await CmsApi.getLikes('');
+    setState(() {
+      linksList = res.data;
+    });
+  }
+
+  getNew() async {
+    final res = await CmsApi.getList();
+    setState(() {
+      homeList[0]['list'] = res.data;
+    });
+  }
+
+  getTvPlay() async {
+    final res = await CmsApi.getList(queryParameters: {'pg': 6});
+    setState(() {
+      homeList[1]['list'] = res.data;
+    });
+  }
+
+  getMove() async {
+    final res = await CmsApi.getList(queryParameters: {'pg': 3});
+    setState(() {
+      homeList[2]['list'] = res.data;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    this.getClassify();
+    this.getLikes();
+    this.getNew();
+    this.getTvPlay();
+    this.getMove();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Wrap(
-          children: [Head(), Classify()],
+          children: [
+            Head(),
+            Classify(
+              key: UniqueKey(),
+              classifyList: classifyList,
+            )
+          ],
         ),
         new Expanded(
           child: ListView.builder(
@@ -39,10 +105,12 @@ class Home extends StatelessWidget {
                     right: 16,
                   ),
                   FHorizontalVideo(
-                    list: [1, 2, 3, 4, 5],
+                    list: linksList,
                   ),
-                  ClassifyBlock(),
-                  ClassifyBlock()
+                  ...(homeList
+                      .map((e) =>
+                          ClassifyBlock(title: e['title'], list: e['list']))
+                      .toList())
                 ],
               );
             },

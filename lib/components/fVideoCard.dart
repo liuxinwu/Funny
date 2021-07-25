@@ -2,11 +2,32 @@ import 'package:flutter/material.dart';
 
 class FVideoCard extends StatelessWidget {
   FVideoCard(
-      {Key? key, required String this.url, double this.maxHeight = 160.0})
+      {Key? key,
+      required this.url,
+      required this.id,
+      this.name = '1',
+      this.desc = '2',
+      double this.maxHeight = 160.0})
       : super(key: key);
 
-  final url;
+  final String url;
+  final String name;
+  final String desc;
+  final int id;
   final maxHeight;
+
+  Image generateImage(BuildContext context) {
+    return url == ''
+        ? Image.asset(
+            "lib/images/logo.png",
+            width: MediaQuery.of(context).size.width,
+          )
+        : Image.network(
+            url,
+            fit: BoxFit.fitWidth,
+            width: MediaQuery.of(context).size.width,
+          );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,16 +40,12 @@ class FVideoCard extends StatelessWidget {
               constraints: BoxConstraints(
                 maxHeight: maxHeight,
               ),
-              child: Image.network(
-                url,
-                fit: BoxFit.fitWidth,
-                width: MediaQuery.of(context).size.width,
-              ),
+              child: generateImage(context),
             ),
             Padding(
               padding: EdgeInsets.only(left: 10),
               child: Text(
-                '我的邻居长不大',
+                name,
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
@@ -40,18 +57,19 @@ class FVideoCard extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(left: 10),
               child: Text(
-                '年下小狼狗追御姐',
+                desc,
                 style: TextStyle(
                     fontSize: 10,
                     color: Color.fromRGBO(153, 153, 153, 1),
                     height: 1.3),
+                overflow: TextOverflow.ellipsis,
               ),
             )
           ],
         ),
         onTap: () {
           Navigator.pushNamed(context, 'videoDetail',
-              arguments: {'videoId': 1});
+              arguments: {'videoId': id});
         });
   }
 }

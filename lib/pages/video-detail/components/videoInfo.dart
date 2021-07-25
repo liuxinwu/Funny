@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class VideoInfo extends StatelessWidget {
+  VideoInfo({required this.data});
+
+  final Map data;
+
   TextStyle getStyle() {
     return TextStyle(fontSize: 14, height: 1.5);
   }
@@ -11,10 +15,12 @@ class VideoInfo extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Image.network(
-            'https://cms.daxjgxx.com//upload//vod//20210716-1//743f14a4c3c23caf4505a34d236d3f8f.jpg',
-            width: 180,
-          ),
+          (data['vod_pic'] != null)
+              ? Image.network(
+                  data['vod_pic'],
+                  width: 180,
+                )
+              : Image.asset('lib/images/logo.png', width: 180),
           SizedBox(
             width: 10,
           ),
@@ -24,17 +30,16 @@ class VideoInfo extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '火药奶昔',
+                    data['vod_name'] ?? '',
                     style: TextStyle(
                         fontSize: 16, fontWeight: FontWeight.bold, height: 2),
                   ),
-                  Text('主演：凯伦·吉兰 琳娜·海蒂 卡拉·古奇诺 杨紫琼 安吉拉·贝塞特 保罗·吉亚玛提 拉尔夫·伊内森 弗蕾娅',
-                      style: getStyle()),
-                  Text('导演：纳沃特·帕普莎多', style: getStyle()),
-                  Text('地区：法国 美国 德国 ', style: getStyle()),
-                  Text('时间：2021-07-16', style: getStyle()),
-                  Text('类型：动作 惊悚 冒险 动作片', style: getStyle()),
-                  Text('语言：英语', style: getStyle())
+                  Text('主演：${data['vod_actor']}', style: getStyle()),
+                  Text('导演：${data['vod_director']}', style: getStyle()),
+                  Text('地区：${data['vod_area']}', style: getStyle()),
+                  Text('时间：${data['vod_time']}', style: getStyle()),
+                  Text('类型：${data['vod_class']}', style: getStyle()),
+                  Text('语言：${data['vod_lang']}', style: getStyle())
                 ],
               ))
         ],

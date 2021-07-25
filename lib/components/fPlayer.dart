@@ -3,28 +3,19 @@ import 'package:fijkplayer_skin/fijkplayer_skin.dart';
 import 'package:flutter/material.dart';
 
 class FPlayer extends StatefulWidget {
-  @override
-  _FPlayer createState() => _FPlayer();
-}
+  FPlayer({Key? key, required this.data}) : super(key: key);
 
-class _FPlayer extends State<FPlayer> {
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 200,
-      child: VideoScreen(),
-    );
-  }
-}
-
-class VideoScreen extends StatefulWidget {
-  VideoScreen();
+  final List data;
 
   @override
-  _VideoScreenState createState() => _VideoScreenState();
+  _FPlayerState createState() => _FPlayerState(data: data);
 }
 
-class _VideoScreenState extends State<VideoScreen> {
+class _FPlayerState extends State<FPlayer> {
+  _FPlayerState({required this.data}) : super();
+
+  final List data;
+
   // FijkPlayer实例
   final FijkPlayer player = FijkPlayer();
   // 当前tab的index，默认0
@@ -34,46 +25,13 @@ class _VideoScreenState extends State<VideoScreen> {
   // 视频源列表，请参考当前videoList完整例子
   var videoList = {
     "video": [
-      {
-        "name": "天空资源",
-        "list": [
-          {
-            "url":
-                "https:\/\/vod8.wenshibaowenbei.com\/20210625\/Mt2RR4Gx\/index.m3u8",
-            "name": "综艺"
-          },
-          {
-            "url": "https://static.smartisanos.cn/common/video/t1-ui.mp4",
-            "name": "锤子1"
-          },
-          {
-            "url": "https://static.smartisanos.cn/common/video/video-jgpro.mp4",
-            "name": "锤子2"
-          }
-        ]
-      },
-      {
-        "name": "天空资源",
-        "list": [
-          {
-            "url": "https://n1.szjal.cn/20210428/lsNZ6QAL/index.m3u8",
-            "name": "综艺"
-          },
-          {
-            "url": "https://static.smartisanos.cn/common/video/t1-ui.mp4",
-            "name": "锤子1"
-          },
-          {
-            "url": "https://static.smartisanos.cn/common/video/video-jgpro.mp4",
-            "name": "锤子2"
-          }
-        ]
-      },
+      {"name": "资源列表", "list": []},
     ]
   };
 
   @override
   void initState() {
+    videoList['video']![0]['list'] = data;
     super.initState();
   }
 
@@ -133,3 +91,20 @@ class _VideoScreenState extends State<VideoScreen> {
         ));
   }
 }
+
+// class _FPlayerState extends State<FPlayer> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return SizedBox(
+//       height: 200,
+//       child: VideoScreen(),
+//     );
+//   }
+// }
+//
+// class VideoScreen extends StatefulWidget {
+//   VideoScreen();
+//
+//   @override
+//   _VideoScreenState createState() => _VideoScreenState();
+// }
