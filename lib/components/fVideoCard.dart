@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class FVideoCard extends StatelessWidget {
@@ -16,17 +17,23 @@ class FVideoCard extends StatelessWidget {
   final int id;
   final maxHeight;
 
-  Image generateImage(BuildContext context) {
-    return url == ''
-        ? Image.asset(
-            "lib/images/logo.png",
-            width: MediaQuery.of(context).size.width,
-          )
-        : Image.network(
-            url,
-            fit: BoxFit.fitWidth,
-            width: MediaQuery.of(context).size.width,
-          );
+  CachedNetworkImage generateImage(BuildContext context) {
+    return CachedNetworkImage(
+      imageUrl: url,
+      fit: BoxFit.fitWidth,
+      placeholder: (context, url) => Image.asset('lib/images/logo.png'),
+      errorWidget: (context, url, error) => Icon(Icons.error),
+    );
+    // return url == ''
+    //     ? Image.asset(
+    //         "lib/images/logo.png",
+    //         width: MediaQuery.of(context).size.width,
+    //       )
+    //     : Image.network(
+    //         url,
+    //         fit: BoxFit.fitWidth,
+    //         width: MediaQuery.of(context).size.width,
+    //       );
   }
 
   @override

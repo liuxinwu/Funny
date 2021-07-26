@@ -96,7 +96,7 @@ class _HomeState extends State<Home> {
                 children: [
                   // swiper 不加高度报错
                   Container(
-                    height: 200,
+                    height: MediaQuery.of(context).size.width * .6,
                     child: FSwiper(),
                   ),
                   FNav(
