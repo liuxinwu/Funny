@@ -5,7 +5,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 class FSwiper extends StatelessWidget {
   final List swiperList = [
     'https:\/\/img.52swat.cn\/upload\/vod\/20210720-1\/c55537d557e1b40733e4d236fefafa95.jpg',
-    'https://cms.daxjgxx.com//upload//vod//20210716-1//743f14a4c3c23caf4505a34d236d3f8f.jpg',
+    'https://img.52swat.cn/upload/vod/20210719-1/1d07d6023ebe7b22089ffde3c695f393.jpg',
     'https:\/\/img.52swat.cn\/upload\/vod\/20210724-1\/cfe67ec19df51727e8adfe3e92f66b71.jpg'
   ];
 

@@ -17,7 +17,7 @@ class FHorizontalVideo extends StatelessWidget {
                 child: FVideoCard(
                     url: item['vod_pic'],
                     name: item['vod_name'],
-                    desc: item['vod_actor'],
+                    subName: item['vod_sub'],
                     id: item['vod_id']),
               ),
             ))

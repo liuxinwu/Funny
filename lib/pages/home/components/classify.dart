@@ -3,31 +3,17 @@
 import 'package:flutter/material.dart';
 import 'package:funny/utils/iconfont.dart';
 
-class Classify extends StatefulWidget {
-  Classify({
-    Key? key,
-    required this.classifyList,
-  }) : super(key: key);
+class Classify extends StatelessWidget {
+  Classify(
+      {Key? key,
+      required this.currentClassify,
+      required this.classifyList,
+      required this.setCurrentClassify})
+      : super(key: key);
 
   final List classifyList;
-
-  _ClassifyState createState() =>
-      new _ClassifyState(classifyList: classifyList);
-}
-
-class _ClassifyState extends State {
-  _ClassifyState({
-    required this.classifyList,
-  });
-
-  final List classifyList;
-  int currentClassify = 0;
-
-  setCurrentClassify(int _currentClassify) {
-    setState(() {
-      currentClassify = _currentClassify;
-    });
-  }
+  final Function setCurrentClassify;
+  final int currentClassify;
 
   @override
   Widget build(BuildContext context) {
@@ -42,30 +28,31 @@ class _ClassifyState extends State {
                         scrollDirection: Axis.horizontal,
                         padding: EdgeInsets.all(8),
                         child: Row(
-                          children: classifyList
-                              .map(
-                                (item) => Padding(
+                          children: classifyList.asMap().entries.map(
+                            (entries) {
+                              final item = entries.value;
+                              return GestureDetector(
+                                onTap: () =>
+                                    setCurrentClassify(item['type_id']),
+                                child: Padding(
                                   padding: EdgeInsets.fromLTRB(8, 0, 8, 5),
-                                  child: GestureDetector(
-                                    onTap: () =>
-                                        setCurrentClassify(item['type_id']),
-                                    child: AnimatedDefaultTextStyle(
-                                      duration: Duration(milliseconds: 200),
-                                      style: currentClassify == item['type_id']
-                                          ? TextStyle(
-                                              fontSize: 20,
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.bold)
-                                          : TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white60),
-                                      child: Text(item['type_name']),
-                                    ),
+                                  child: AnimatedDefaultTextStyle(
+                                    duration: Duration(milliseconds: 200),
+                                    style: currentClassify == item['type_id']
+                                        ? TextStyle(
+                                            fontSize: 20,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold)
+                                        : TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white60),
+                                    child: Text(item['type_name']),
                                   ),
                                 ),
-                              )
-                              .toList(),
+                              );
+                            },
+                          ).toList(),
                         )))),
             GestureDetector(
               onTap: () => {print('更多')},

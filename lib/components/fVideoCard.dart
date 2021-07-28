@@ -6,34 +6,25 @@ class FVideoCard extends StatelessWidget {
       {Key? key,
       required this.url,
       required this.id,
-      this.name = '1',
-      this.desc = '2',
+      this.name = '',
+      this.subName = '',
       double this.maxHeight = 160.0})
       : super(key: key);
 
   final String url;
   final String name;
-  final String desc;
+  final String subName;
   final int id;
   final maxHeight;
 
   CachedNetworkImage generateImage(BuildContext context) {
     return CachedNetworkImage(
+      width: double.infinity,
       imageUrl: url,
       fit: BoxFit.fitWidth,
       placeholder: (context, url) => Image.asset('lib/images/logo.png'),
       errorWidget: (context, url, error) => Icon(Icons.error),
     );
-    // return url == ''
-    //     ? Image.asset(
-    //         "lib/images/logo.png",
-    //         width: MediaQuery.of(context).size.width,
-    //       )
-    //     : Image.network(
-    //         url,
-    //         fit: BoxFit.fitWidth,
-    //         width: MediaQuery.of(context).size.width,
-    //       );
   }
 
   @override
@@ -59,12 +50,13 @@ class FVideoCard extends StatelessWidget {
                   color: Colors.black,
                   height: 2,
                 ),
+                overflow: TextOverflow.ellipsis,
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 10),
+              padding: EdgeInsets.only(left: 10, bottom: 5),
               child: Text(
-                desc,
+                subName,
                 style: TextStyle(
                     fontSize: 10,
                     color: Color.fromRGBO(153, 153, 153, 1),
