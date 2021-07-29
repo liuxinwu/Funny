@@ -13,7 +13,7 @@ class Classify extends StatelessWidget {
 
   final List classifyList;
   final Function setCurrentClassify;
-  final int currentClassify;
+  final Map currentClassify;
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +31,15 @@ class Classify extends StatelessWidget {
                           children: classifyList.asMap().entries.map(
                             (entries) {
                               final item = entries.value;
+                              final index = entries.key;
                               return GestureDetector(
-                                onTap: () =>
-                                    setCurrentClassify(item['type_id']),
+                                onTap: () => setCurrentClassify(item),
                                 child: Padding(
                                   padding: EdgeInsets.fromLTRB(8, 0, 8, 5),
                                   child: AnimatedDefaultTextStyle(
                                     duration: Duration(milliseconds: 200),
-                                    style: currentClassify == item['type_id']
+                                    style: currentClassify['type_id'] ==
+                                            item['type_id']
                                         ? TextStyle(
                                             fontSize: 20,
                                             color: Colors.white,

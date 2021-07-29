@@ -17,13 +17,16 @@ class FVideoCard extends StatelessWidget {
   final int id;
   final maxHeight;
 
-  CachedNetworkImage generateImage(BuildContext context) {
-    return CachedNetworkImage(
-      width: double.infinity,
-      imageUrl: url,
-      fit: BoxFit.fitWidth,
-      placeholder: (context, url) => Image.asset('lib/images/logo.png'),
-      errorWidget: (context, url, error) => Icon(Icons.error),
+  ClipRRect generateImage(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(8),
+      child: CachedNetworkImage(
+        width: double.infinity,
+        imageUrl: url,
+        fit: BoxFit.fitWidth,
+        placeholder: (context, url) => Image.asset('lib/images/logo.png'),
+        errorWidget: (context, url, error) => Icon(Icons.error),
+      ),
     );
   }
 

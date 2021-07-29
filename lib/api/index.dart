@@ -8,4 +8,4 @@ import '/utils/request.dart';
 
 // cms dio 实例
 Request cmsRequest =
-    new Request(new BaseOptions(baseUrl: 'http://192.168.3.13:3000'));
+    new Request(new BaseOptions(baseUrl: 'http://192.168.104.115:3000'));
