@@ -77,7 +77,7 @@ class _FPlayerState extends State<FPlayer> {
               // 是否显示顶部，如果要显示顶部标题栏 + 返回键，那么就传递 true
               showTopCon: true,
               // 标题 当前页面顶部的标题部分，可以不传，默认空字符串
-              playerTitle: "标题",
+              playerTitle: "",
               // 当前视频改变钩子
               onChangeVideo: onChangeVideo,
               // 视频源列表
@@ -91,20 +91,3 @@ class _FPlayerState extends State<FPlayer> {
         ));
   }
 }
-
-// class _FPlayerState extends State<FPlayer> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return SizedBox(
-//       height: 200,
-//       child: VideoScreen(),
-//     );
-//   }
-// }
-//
-// class VideoScreen extends StatefulWidget {
-//   VideoScreen();
-//
-//   @override
-//   _VideoScreenState createState() => _VideoScreenState();
-// }

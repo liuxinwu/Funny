@@ -70,7 +70,7 @@ class FVideoCard extends StatelessWidget {
           ],
         ),
         onTap: () {
-          Navigator.pushNamed(context, 'videoDetail',
+          Navigator.pushNamed(context, 'videoPlayPage',
               arguments: {'videoId': id});
         });
   }
