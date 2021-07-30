@@ -44,7 +44,7 @@ class _HomeState extends State<Home> {
       this.getSecondClassifyList();
     }
 
-    // _controller.jumpTo(currentClassify['offset'] ?? 0);
+    _controller.jumpTo(currentClassify['offset'] ?? 0);
   }
 
   List<Widget> getListWidget() {
@@ -53,11 +53,6 @@ class _HomeState extends State<Home> {
       case 0:
         {
           return [
-            // swiper 不加高度报错
-            Container(
-              height: MediaQuery.of(context).size.width * .6,
-              child: FSwiper(),
-            ),
             FNav(
               title: '猜你喜欢',
               left: 16,
@@ -78,7 +73,6 @@ class _HomeState extends State<Home> {
               .toList())
         ];
     }
-    return [];
   }
 
   // 二级分类
@@ -168,9 +162,9 @@ class _HomeState extends State<Home> {
       this.getMove();
     });
 
-    // _controller.addListener(() {
-    //   currentClassify['offset'] = _controller.offset;
-    // });
+    _controller.addListener(() {
+      currentClassify['offset'] = _controller.offset;
+    });
   }
 
   @override
@@ -210,7 +204,14 @@ class _HomeState extends State<Home> {
                 );
               }
               return Wrap(
-                children: getListWidget(),
+                children: [
+                  // swiper 不加高度报错
+                  Container(
+                    height: MediaQuery.of(context).size.width * .6,
+                    child: FSwiper(),
+                  ),
+                  ...getListWidget()
+                ],
               );
             },
           ),

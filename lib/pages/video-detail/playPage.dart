@@ -26,12 +26,6 @@ class _PlayPage extends State<PlayPage> {
     final res =
         await CmsApi.getDetail(queryParameters: {'ids': routeArgs['videoId']});
     final data = res.data[0] ?? [];
-    // List _videoUrl = [];
-    // data['vodPlayUrl'].asMap().entries.forEach((entry) {
-    //   final index = entry.key + 1;
-    //   final value = entry.value;
-    //   _videoUrl.add({'name': '第$index集', 'url': value.split('\$')[1]});
-    // });
 
     setState(() {
       videoDetail = data;
