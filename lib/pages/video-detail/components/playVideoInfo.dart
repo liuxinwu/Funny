@@ -13,7 +13,7 @@ class PlayVideoInfo extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              data['vod_name'] ?? '',
+              data['vodName'] ?? '',
               style: TextStyle(
                   fontSize: 16, fontWeight: FontWeight.bold, height: 2),
             ),
@@ -22,7 +22,7 @@ class PlayVideoInfo extends StatelessWidget {
               padding: EdgeInsets.fromLTRB(5, 3, 5, 3),
               color: Theme.of(context).primaryColor,
               child: Text(
-                data['vod_score'] ?? '0',
+                data['vodScore'] ?? '0',
                 style: TextStyle(color: Colors.white, fontSize: 12, height: 1),
               ),
             )

@@ -52,7 +52,7 @@ class _VideoDetailState extends State {
               children: [
                 VideoInfo(data: videoDetail),
                 VideoCollection(
-                  data: videoDetail['vod_play_url'],
+                  data: videoDetail['vodPlayUrl'],
                   handleClick: (index) {
                     Navigator.pushNamed(context, 'videoPlayPage', arguments: {
                       'collection': index,
@@ -60,7 +60,7 @@ class _VideoDetailState extends State {
                     });
                   },
                 ),
-                VideoDesc(data: videoDetail['vod_blurb']),
+                VideoDesc(data: videoDetail['vodBlurb']),
                 VideoComment()
               ],
             ))),

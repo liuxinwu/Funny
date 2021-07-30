@@ -1,6 +1,4 @@
-/**
- * 不同域名下的请求实例
- */
+// 不同域名下的请求实例
 
 import 'package:dio/dio.dart';
 

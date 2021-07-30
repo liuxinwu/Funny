@@ -1,6 +1,5 @@
-/**
- * cms 域名下的 API 管理
- */
+// cms 域名下的 API 管理
+
 import '/utils/request.dart';
 import './index.dart';
 

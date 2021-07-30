@@ -28,10 +28,10 @@ class ClassifyBlock extends StatelessWidget {
           right: 16,
         ),
         ...(firstVideo.map((item) => FVideoCard(
-              id: item['vod_id'],
-              url: item['vod_pic'],
-              name: item['vod_name'],
-              subName: item['vod_sub'],
+              id: item['vodId'],
+              url: item['vodPic'],
+              name: item['vodName'],
+              subName: item['vodSub'],
               maxHeight: 200,
             ))),
         Padding(
@@ -51,10 +51,10 @@ class ClassifyBlock extends StatelessWidget {
                       right: index % 2 == 0 ? _spacing : 0,
                       left: index % 2 != 0 ? _spacing : 0),
                   child: FVideoCard(
-                      url: item['vod_pic'],
-                      name: item['vod_name'],
-                      subName: item['vod_sub'],
-                      id: item['vod_id']),
+                      url: item['vodPic'],
+                      name: item['vodName'],
+                      subName: item['vodSub'],
+                      id: item['vodId']),
                 ),
               );
             }).toList(),

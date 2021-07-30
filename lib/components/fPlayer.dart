@@ -51,6 +51,12 @@ class _FPlayerState extends State<FPlayer> {
 
   @override
   Widget build(BuildContext context) {
+    if (data == null || data.length == 0)
+      return Container(
+        height: 240,
+        color: Colors.black,
+      );
+
     return Container(
         alignment: Alignment.center,
         // 这里 FijkView 开始为自定义 UI 部分
@@ -71,11 +77,11 @@ class _FPlayerState extends State<FPlayer> {
               player: player,
               // 传递 context 用于左上角返回箭头关闭当前页面，不要传递错误 context，
               // 如果要点击箭头关闭当前的页面，那必须传递当前组件的根 context
-              pageContent: context,
+              // pageContent: context,
               viewSize: viewSize,
               texturePos: texturePos,
               // 是否显示顶部，如果要显示顶部标题栏 + 返回键，那么就传递 true
-              showTopCon: true,
+              showTopCon: false,
               // 标题 当前页面顶部的标题部分，可以不传，默认空字符串
               playerTitle: "",
               // 当前视频改变钩子

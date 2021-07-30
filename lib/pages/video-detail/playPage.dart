@@ -26,17 +26,16 @@ class _PlayPage extends State<PlayPage> {
     final res =
         await CmsApi.getDetail(queryParameters: {'ids': routeArgs['videoId']});
     final data = res.data[0] ?? [];
-    List _videoUrl = [];
-    List urlList = data['vod_play_url'].split('#');
-    urlList.asMap().entries.forEach((entry) {
-      final index = entry.key + 1;
-      final value = entry.value;
-      _videoUrl.add({'name': '第$index集', 'url': value.split('\$')[1]});
-    });
+    // List _videoUrl = [];
+    // data['vodPlayUrl'].asMap().entries.forEach((entry) {
+    //   final index = entry.key + 1;
+    //   final value = entry.value;
+    //   _videoUrl.add({'name': '第$index集', 'url': value.split('\$')[1]});
+    // });
 
     setState(() {
       videoDetail = data;
-      videoUrl = _videoUrl;
+      videoUrl = data['vodPlayUrl'] ?? [];
     });
   }
 
@@ -48,10 +47,10 @@ class _PlayPage extends State<PlayPage> {
 
   @override
   Widget build(BuildContext context) {
-    print(routeArgs);
+    print(videoUrl);
     return Scaffold(
       appBar: AppBar(
-        title: Text(videoDetail['vod_name'] ?? ''),
+        title: Text(videoDetail['vodName'] ?? ''),
       ),
       body: Scrollbar(
         controller: ScrollController(initialScrollOffset: 0),
@@ -69,7 +68,7 @@ class _PlayPage extends State<PlayPage> {
                       data: videoDetail,
                     ),
                     VideoCollection(
-                      data: videoDetail['vod_play_url'],
+                      data: videoDetail['vodPlayUrl'] ?? [],
                       title: '选集',
                       handleClick: () {
                         print('集数');

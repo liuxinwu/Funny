@@ -31,15 +31,14 @@ class Classify extends StatelessWidget {
                           children: classifyList.asMap().entries.map(
                             (entries) {
                               final item = entries.value;
-                              final index = entries.key;
                               return GestureDetector(
                                 onTap: () => setCurrentClassify(item),
                                 child: Padding(
                                   padding: EdgeInsets.fromLTRB(8, 0, 8, 5),
                                   child: AnimatedDefaultTextStyle(
                                     duration: Duration(milliseconds: 200),
-                                    style: currentClassify['type_id'] ==
-                                            item['type_id']
+                                    style: currentClassify['typeId'] ==
+                                            item['typeId']
                                         ? TextStyle(
                                             fontSize: 20,
                                             color: Colors.white,
@@ -48,7 +47,7 @@ class Classify extends StatelessWidget {
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold,
                                             color: Colors.white60),
-                                    child: Text(item['type_name']),
+                                    child: Text(item['typeName']),
                                   ),
                                 ),
                               );

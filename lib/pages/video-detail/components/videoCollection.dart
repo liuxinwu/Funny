@@ -10,21 +10,22 @@ class VideoCollection extends StatelessWidget {
 
   final String title;
   final Function handleClick;
-  final String data;
+  final List data;
 
   List<Widget> getCollection(color) {
     if (data == null) return [];
+    print(data);
 
-    final urlList = data.split('#');
-    return urlList.asMap().entries.map((entry) {
+    return data.asMap().entries.map((entry) {
       final item = entry.value;
       final int index = entry.key;
+      print(item);
 
       return TextButton(
           onPressed: () {
             this.handleClick(index);
           },
-          child: Text(item.split('\$')[0]),
+          child: Text(item['name'] ?? ''),
           style: ButtonStyle(
               textStyle:
                   MaterialStateProperty.all(TextStyle(color: Colors.black87)),

@@ -1,10 +1,8 @@
-import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 import 'package:funny/api/cmsApi.dart';
 import 'package:funny/components/fHorizontalVideo.dart';
 import 'package:funny/components/fNav.dart';
 import 'package:funny/components/fSwiper.dart';
-import 'package:funny/utils/index.dart';
 
 import './components/classify.dart';
 import './components/classifyBlock.dart';
@@ -19,7 +17,7 @@ class _HomeState extends State<Home> {
   // 分类列表
   List classifyList = [];
   // 当前分类
-  Map currentClassify = {'type_id': 0, 'type_name': '精选'};
+  Map currentClassify = {'typeId': 0, 'typeName': '精选'};
   // 猜你喜欢
   List linksList = [];
   // 滚动控制器
@@ -42,15 +40,15 @@ class _HomeState extends State<Home> {
     });
 
     // 排除精选
-    if (_currentClassify['type_id'] != 0) {
+    if (_currentClassify['typeId'] != 0) {
       this.getSecondClassifyList();
     }
 
-    _controller.jumpTo(currentClassify['offset'] ?? 0);
+    // _controller.jumpTo(currentClassify['offset'] ?? 0);
   }
 
   List<Widget> getListWidget() {
-    final typeId = currentClassify["type_id"];
+    final typeId = currentClassify["typeId"];
     switch (typeId) {
       case 0:
         {
@@ -85,22 +83,23 @@ class _HomeState extends State<Home> {
 
   // 二级分类
   getSecondClassifyList() async {
-    List _otherPageData = otherPageData[currentClassify['type_id']] ?? [];
+    List _otherPageData = otherPageData[currentClassify['typeId']] ?? [];
     // 访问过就返回
     if (_otherPageData.length > 0) return;
 
     final res = await CmsApi.getClassify(
-        queryParameters: {'pid': currentClassify['type_id']});
+        queryParameters: {'pid': currentClassify['typeId']});
     List tempData = [];
 
     for (Map classify in (res.data ?? [])) {
+      if (classify == null) return;
       final res =
-          await CmsApi.getList(queryParameters: {'ids': classify['type_id']});
-      tempData.add({'title': classify['type_name'], 'list': res.data ?? []});
+          await CmsApi.getList(queryParameters: {'ids': classify['typeId']});
+      tempData.add({'title': classify['typeName'], 'list': res.data ?? []});
     }
 
     setState(() {
-      otherPageData[currentClassify['type_id']] = tempData;
+      otherPageData[currentClassify['typeId']] = tempData;
     });
   }
 
@@ -169,9 +168,9 @@ class _HomeState extends State<Home> {
       this.getMove();
     });
 
-    _controller.addListener(() {
-      currentClassify['offset'] = _controller.offset;
-    });
+    // _controller.addListener(() {
+    //   currentClassify['offset'] = _controller.offset;
+    // });
   }
 
   @override

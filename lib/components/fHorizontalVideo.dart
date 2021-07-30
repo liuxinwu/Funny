@@ -15,10 +15,10 @@ class FHorizontalVideo extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(right: 5),
                 child: FVideoCard(
-                    url: item['vod_pic'],
-                    name: item['vod_name'],
-                    subName: item['vod_sub'],
-                    id: item['vod_id']),
+                    url: item['vodPic'],
+                    name: item['vodName'],
+                    subName: item['vodSub'],
+                    id: item['vodId']),
               ),
             ))
         .toList();
