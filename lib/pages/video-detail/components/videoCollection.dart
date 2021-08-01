@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class VideoCollection extends StatelessWidget {
+class VideoCollection extends StatefulWidget {
   VideoCollection(
       {Key? key,
-      this.title = '在线播放',
+      required this.title,
       required this.handleClick,
       required this.data})
       : super(key: key);
@@ -12,26 +12,51 @@ class VideoCollection extends StatelessWidget {
   final Function handleClick;
   final List data;
 
+  @override
+  _VideoCollection createState() =>
+      _VideoCollection(title: title, handleClick: handleClick, data: data);
+}
+
+class _VideoCollection extends State<VideoCollection> {
+  _VideoCollection(
+      {required this.title, required this.handleClick, required this.data});
+
+  final String title;
+  final Function handleClick;
+  final List data;
+  // 当前播放集数
+  int currentCollection = 0;
+
   List<Widget> getCollection(color) {
-    if (data == null) return [];
-    print(data);
+    // if (data == null) return [];
 
     return data.asMap().entries.map((entry) {
       final item = entry.value;
       final int index = entry.key;
-      print(item);
 
-      return TextButton(
-          onPressed: () {
-            this.handleClick(index);
-          },
-          child: Text(item['name'] ?? ''),
-          style: ButtonStyle(
-              textStyle:
-                  MaterialStateProperty.all(TextStyle(color: Colors.black87)),
-              overlayColor: MaterialStateProperty.all(color),
-              side: MaterialStateProperty.all(
-                  BorderSide(color: Colors.blue, width: 1))));
+      return Padding(
+        padding: EdgeInsets.only(right: 10, left: 0, top: 5),
+        child: SizedBox(
+          height: 46,
+          child: TextButton(
+              onPressed: () {
+                this.handleClick(index);
+                setState(() {
+                  currentCollection = index;
+                });
+              },
+              onLongPress: () {},
+              child: Text(
+                item['name'] ?? '',
+                style: TextStyle(
+                    color: currentCollection == index ? color : Colors.black87),
+              ),
+              style: TextButton.styleFrom(
+                backgroundColor: Color.fromRGBO(237, 240, 247, 1.0),
+                primary: color,
+              )),
+        ),
+      );
     }).toList();
   }
 
@@ -39,19 +64,21 @@ class VideoCollection extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = Theme.of(context).primaryColor;
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return ListBody(
       children: [
         Text(
           '$title：',
           style:
               TextStyle(fontSize: 14, height: 2, fontWeight: FontWeight.bold),
         ),
-        Wrap(
-          spacing: 20,
-          children: getCollection(color),
-        )
+        Scrollbar(
+            child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: getCollection(color),
+                )))
       ],
     );
   }

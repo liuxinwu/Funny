@@ -25,4 +25,13 @@ class FIcons {
 
   // 大于
   static final IconData gt = generateIcon(0xe631);
+
+  // 分享
+  static final IconData share = generateIcon(0xe619);
+
+  // 收藏
+  static final IconData collection = generateIcon(0xe687);
+
+  // 点赞
+  static final IconData likes = generateIcon(0xe612);
 }

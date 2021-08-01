@@ -16,20 +16,21 @@ class FApp extends StatelessWidget {
     return MaterialApp(
       title: '风趣娱乐',
       theme: new ThemeData(
-          appBarTheme: AppBarTheme(
-              backgroundColor: _primaryColor, brightness: Brightness.light),
-          primaryColor: _primaryColor,
-          brightness: Brightness.light,
-          iconTheme: IconThemeData(color: Colors.white),
-          bottomNavigationBarTheme: BottomNavigationBarThemeData(
-              backgroundColor: Color.fromRGBO(25, 25, 25, 1),
-              // unselectedIconTheme: IconThemeData(color: Colors.white60),
-              // selectedIconTheme: IconThemeData(color: _primaryColor),
-              // 直接设置 labelStyle 没用 需要设置 ItemColor
-              // unselectedLabelStyle: TextStyle(color: _primaryColor),
-              // selectedLabelStyle: TextStyle(color: Colors.white60),
-              unselectedItemColor: Colors.white60,
-              selectedItemColor: _primaryColor)),
+        appBarTheme: AppBarTheme(
+            backgroundColor: _primaryColor, brightness: Brightness.light),
+        primaryColor: _primaryColor,
+        brightness: Brightness.light,
+        iconTheme: IconThemeData(color: Colors.white, size: 20),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+            backgroundColor: Color.fromRGBO(25, 25, 25, 1),
+            // unselectedIconTheme: IconThemeData(color: Colors.white60),
+            // selectedIconTheme: IconThemeData(color: _primaryColor),
+            // 直接设置 labelStyle 没用 需要设置 ItemColor
+            // unselectedLabelStyle: TextStyle(color: _primaryColor),
+            // selectedLabelStyle: TextStyle(color: Colors.white60),
+            unselectedItemColor: Colors.white60,
+            selectedItemColor: _primaryColor),
+      ),
       routes: FRoutes.routes,
       onGenerateRoute: FRoutes.onGenerateRoute,
       onUnknownRoute: FRoutes.onUnknownRoute,

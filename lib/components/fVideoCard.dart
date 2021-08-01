@@ -8,14 +8,16 @@ class FVideoCard extends StatelessWidget {
       required this.id,
       this.name = '',
       this.subName = '',
-      double this.maxHeight = 160.0})
+      this.maxHeight = 160.0,
+      this.jumpMethod})
       : super(key: key);
 
   final String url;
   final String name;
   final String subName;
   final int id;
-  final maxHeight;
+  final double maxHeight;
+  final jumpMethod;
 
   ClipRRect generateImage(BuildContext context) {
     return ClipRRect(
@@ -23,7 +25,7 @@ class FVideoCard extends StatelessWidget {
       child: CachedNetworkImage(
         width: double.infinity,
         imageUrl: url,
-        fit: BoxFit.fitWidth,
+        fit: BoxFit.cover,
         placeholder: (context, url) => Image.asset('lib/images/logo.png'),
         errorWidget: (context, url, error) => Icon(Icons.error),
       ),
@@ -38,9 +40,7 @@ class FVideoCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
-              constraints: BoxConstraints(
-                maxHeight: maxHeight,
-              ),
+              constraints: BoxConstraints(maxHeight: maxHeight),
               child: generateImage(context),
             ),
             Padding(
@@ -60,6 +60,7 @@ class FVideoCard extends StatelessWidget {
               padding: EdgeInsets.only(left: 10, bottom: 5),
               child: Text(
                 subName,
+                // textWidthBasis: TextWidthBasis.values,
                 style: TextStyle(
                     fontSize: 10,
                     color: Color.fromRGBO(153, 153, 153, 1),
@@ -70,6 +71,10 @@ class FVideoCard extends StatelessWidget {
           ],
         ),
         onTap: () {
+          if (jumpMethod != null) {
+            jumpMethod({'videoId': id});
+            return;
+          }
           Navigator.pushNamed(context, 'videoPlayPage',
               arguments: {'videoId': id});
         });

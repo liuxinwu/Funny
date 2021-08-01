@@ -86,7 +86,6 @@ class _HomeState extends State<Home> {
     List tempData = [];
 
     for (Map classify in (res.data ?? [])) {
-      if (classify == null) return;
       final res =
           await CmsApi.getList(queryParameters: {'ids': classify['typeId']});
       tempData.add({'title': classify['typeName'], 'list': res.data ?? []});
@@ -162,6 +161,7 @@ class _HomeState extends State<Home> {
       this.getMove();
     });
 
+    // 需要截流
     _controller.addListener(() {
       currentClassify['offset'] = _controller.offset;
     });

@@ -1,6 +1,7 @@
 import 'package:fijkplayer/fijkplayer.dart';
 import 'package:fijkplayer_skin/fijkplayer_skin.dart';
 import 'package:flutter/material.dart';
+import 'package:funny/utils/evnet.dart';
 
 class FPlayer extends StatefulWidget {
   FPlayer({Key? key, required this.data}) : super(key: key);
@@ -8,61 +9,83 @@ class FPlayer extends StatefulWidget {
   final List data;
 
   @override
-  _FPlayerState createState() => _FPlayerState(data: data);
+  _FPlayerState createState() => _FPlayerState(
+        data: data,
+      );
 }
 
 class _FPlayerState extends State<FPlayer> {
-  _FPlayerState({required this.data}) : super();
+  _FPlayerState({
+    required this.data,
+  });
 
   final List data;
 
   // FijkPlayer实例
-  final FijkPlayer player = FijkPlayer();
+  FijkPlayer player = FijkPlayer();
   // 当前tab的index，默认0
   int _curTabIdx = 0;
-  // 当前选中的tablist index，默认0
   int _curActiveIdx = 0;
   // 视频源列表，请参考当前videoList完整例子
-  var videoList = {
+  Map<String, List<Map<String, dynamic>>> videoList = {
     "video": [
       {"name": "资源列表", "list": []},
     ]
   };
 
+  void playConllection(int curActiveIdx) {
+    print('父类调用---');
+    _curActiveIdx = curActiveIdx;
+    (() async {
+      await player.stop();
+      await player.reset();
+      player.setDataSource(
+        data[_curActiveIdx]['url'],
+        autoPlay: true,
+      );
+    })();
+  }
+
   @override
   void initState() {
     videoList['video']![0]['list'] = data;
+    eventCenter['on'](playConllection);
     super.initState();
   }
 
   @override
   void dispose() {
+    print('销毁');
+    player.release();
     player.dispose();
     super.dispose();
   }
 
   // 播放器内部切换视频钩子，回调，tabIdx 和 activeIdx
   void onChangeVideo(int curTabIdx, int curActiveIdx) {
-    this.setState(() {
-      _curTabIdx = curTabIdx;
+    setState(() {
       _curActiveIdx = curActiveIdx;
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    final Color primaryColor = Theme.of(context).primaryColor;
+
     if (data == null || data.length == 0)
       return Container(
         height: 240,
-        color: Colors.black,
+        color: primaryColor,
       );
+    final String title = data[_curActiveIdx]['name'] ?? '';
+    print('----------$_curActiveIdx----$title');
 
     return Container(
         alignment: Alignment.center,
         // 这里 FijkView 开始为自定义 UI 部分
         child: FijkView(
           height: 240,
-          color: Colors.black,
+          color: primaryColor,
           fit: FijkFit.cover,
           player: player,
           panelBuilder: (
@@ -83,7 +106,7 @@ class _FPlayerState extends State<FPlayer> {
               // 是否显示顶部，如果要显示顶部标题栏 + 返回键，那么就传递 true
               showTopCon: false,
               // 标题 当前页面顶部的标题部分，可以不传，默认空字符串
-              playerTitle: "",
+              playerTitle: title,
               // 当前视频改变钩子
               onChangeVideo: onChangeVideo,
               // 视频源列表

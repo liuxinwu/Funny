@@ -52,6 +52,7 @@ class _VideoDetailState extends State {
               children: [
                 VideoInfo(data: videoDetail),
                 VideoCollection(
+                  title: '视频详情',
                   data: videoDetail['vodPlayUrl'],
                   handleClick: (index) {
                     Navigator.pushNamed(context, 'videoPlayPage', arguments: {

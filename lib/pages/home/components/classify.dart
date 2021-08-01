@@ -23,7 +23,6 @@ class Classify extends StatelessWidget {
           children: [
             Expanded(
                 child: Scrollbar(
-                    controller: ScrollController(initialScrollOffset: 0),
                     child: SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         padding: EdgeInsets.all(8),

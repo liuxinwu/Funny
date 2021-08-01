@@ -3,10 +3,11 @@ import 'package:funny/components/fNav.dart';
 import 'package:funny/components/fVideoCard.dart';
 
 class ClassifyBlock extends StatelessWidget {
-  ClassifyBlock({required this.title, required this.list});
+  ClassifyBlock({required this.title, required this.list, this.jumpMethod});
 
   final String title;
   final List list;
+  final jumpMethod;
 
   static const _spacing = 2.5;
   double computedWidth(width) {
@@ -33,6 +34,7 @@ class ClassifyBlock extends StatelessWidget {
               name: item['vodName'],
               subName: item['vodSub'],
               maxHeight: 200,
+              jumpMethod: jumpMethod,
             ))),
         Padding(
           padding: EdgeInsets.only(top: 10),
@@ -51,10 +53,12 @@ class ClassifyBlock extends StatelessWidget {
                       right: index % 2 == 0 ? _spacing : 0,
                       left: index % 2 != 0 ? _spacing : 0),
                   child: FVideoCard(
-                      url: item['vodPic'],
-                      name: item['vodName'],
-                      subName: item['vodSub'],
-                      id: item['vodId']),
+                    url: item['vodPic'],
+                    name: item['vodName'],
+                    subName: item['vodSub'],
+                    id: item['vodId'],
+                    jumpMethod: jumpMethod,
+                  ),
                 ),
               );
             }).toList(),
