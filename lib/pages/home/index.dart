@@ -34,7 +34,6 @@ class _HomeState extends State<Home> {
 
   // 设置当前分类
   setCurrentClassify(Map _currentClassify) {
-    print(_currentClassify);
     setState(() {
       currentClassify = _currentClassify;
     });

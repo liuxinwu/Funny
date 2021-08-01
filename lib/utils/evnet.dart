@@ -11,5 +11,8 @@ Map eventCenter = {
     eventCenter['center'].forEach((e) {
       e(curActiveIdx);
     });
+  },
+  'off': () {
+    eventCenter['center'].length = 0;
   }
 };

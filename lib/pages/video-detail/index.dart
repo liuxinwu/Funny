@@ -5,21 +5,21 @@ import 'package:funny/components/fNav.dart';
 import 'package:funny/components/fPlayer.dart';
 import 'package:funny/utils/evnet.dart';
 
-import 'components/playVideoInfo.dart';
 import 'components/videoCollection.dart';
 import 'components/videoComment.dart';
+import 'components/videoInfo.dart';
 
-class PlayPage extends StatefulWidget {
-  PlayPage({Key? key, this.routeArgs}) : super(key: key);
+class VideoDetail extends StatefulWidget {
+  VideoDetail({Key? key, this.routeArgs}) : super(key: key);
 
   final routeArgs;
 
   @override
-  _PlayPage createState() => _PlayPage(routeArgs: routeArgs);
+  _VideoDetail createState() => _VideoDetail(routeArgs: routeArgs);
 }
 
-class _PlayPage extends State<PlayPage> {
-  _PlayPage({this.routeArgs});
+class _VideoDetail extends State<VideoDetail> {
+  _VideoDetail({this.routeArgs});
 
   final routeArgs;
   Map videoInfo = {};
@@ -111,7 +111,7 @@ class _PlayPage extends State<PlayPage> {
                           list: recommendList,
                           jumpMethod: (arguments) => {
                             Navigator.pushReplacementNamed(
-                                context, 'videoPlayPage',
+                                context, 'videoDetail',
                                 arguments: arguments)
                           },
                         ),
@@ -120,7 +120,7 @@ class _PlayPage extends State<PlayPage> {
                           list: hotList,
                           jumpMethod: (arguments) => {
                             Navigator.pushReplacementNamed(
-                                context, 'videoPlayPage',
+                                context, 'videoDetail',
                                 arguments: arguments)
                           },
                         ),

@@ -18,21 +18,21 @@ class _FPlayerState extends State<FPlayer> {
   _FPlayerState({
     required this.data,
   });
-
   final List data;
-
-  // FijkPlayer实例
+  // 播放实例
   FijkPlayer player = FijkPlayer();
   // 当前tab的index，默认0
   int _curTabIdx = 0;
+  // 当前播放第几集
   int _curActiveIdx = 0;
-  // 视频源列表，请参考当前videoList完整例子
+  // 资源列表
   Map<String, List<Map<String, dynamic>>> videoList = {
     "video": [
       {"name": "资源列表", "list": []},
     ]
   };
 
+  // 切换播放集数
   void playConllection(int curActiveIdx) {
     // 这里有个小问题标题没有更新
     _curActiveIdx = curActiveIdx;
@@ -57,6 +57,7 @@ class _FPlayerState extends State<FPlayer> {
   void dispose() {
     player.release();
     player.dispose();
+    eventCenter['off']();
     super.dispose();
   }
 
@@ -72,16 +73,15 @@ class _FPlayerState extends State<FPlayer> {
     final height = MediaQuery.of(context).size.width * 9 / 16;
     final Color primaryColor = Theme.of(context).primaryColor;
 
-    if (data == null || data.length == 0)
+    if (data.length == 0)
       return Container(
         height: height,
         color: primaryColor,
       );
     final String title = data[_curActiveIdx]['name'] ?? '';
 
-    return
-        // 这里 FijkView 开始为自定义 UI 部分
-        FijkView(
+    return FijkView(
+      // 这里 FijkView 开始为自定义 UI 部分
       height: height,
       color: primaryColor,
       fit: FijkFit.ar16_9,

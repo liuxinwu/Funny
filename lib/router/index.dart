@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:funny/pages/app.dart';
 import 'package:funny/pages/video-detail/index.dart';
-import 'package:funny/pages/video-detail/playPage.dart';
 
 class FRoutes {
   static final routes = <String, WidgetBuilder>{
@@ -10,9 +9,6 @@ class FRoutes {
 
   static final routers = <String, dynamic>{
     'videoDetail': (arguments) => VideoDetail(
-          routeArgs: arguments,
-        ),
-    'videoPlayPage': (arguments) => PlayPage(
           routeArgs: arguments,
         )
   };

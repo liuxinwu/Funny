@@ -75,7 +75,7 @@ class FVideoCard extends StatelessWidget {
             jumpMethod({'videoId': id});
             return;
           }
-          Navigator.pushNamed(context, 'videoPlayPage',
+          Navigator.pushNamed(context, 'videoDetail',
               arguments: {'videoId': id});
         });
   }

@@ -44,8 +44,9 @@ class Classify extends StatelessWidget {
                                             fontWeight: FontWeight.bold)
                                         : TextStyle(
                                             fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white60),
+                                            color: Colors.white60,
+                                            fontWeight: FontWeight.w500,
+                                          ),
                                     child: Text(item['typeName']),
                                   ),
                                 ),
