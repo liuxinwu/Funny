@@ -5,11 +5,9 @@
 Map eventCenter = {
   'center': [],
   'on': (fn) {
-    print('onon');
     eventCenter['center'].add(fn);
   },
   'emit': (int curActiveIdx) {
-    print(eventCenter['center']);
     eventCenter['center'].forEach((e) {
       e(curActiveIdx);
     });
