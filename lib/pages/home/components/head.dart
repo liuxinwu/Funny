@@ -20,7 +20,11 @@ class Head extends StatelessWidget {
                 ),
               ),
               new Expanded(
-                child: Container(
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, 'search');
+                  },
+                  child: Container(
                   margin: EdgeInsets.only(left: 10, right: 10),
                   padding: EdgeInsets.fromLTRB(10, 3, 10, 3),
                   child: Row(
@@ -42,7 +46,7 @@ class Head extends StatelessWidget {
                       const Radius.circular(8.0),
                     ),
                   ),
-                ),
+                ),),
               ),
               Padding(
                   padding: EdgeInsets.fromLTRB(0, 0, 5, 0),

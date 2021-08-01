@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:funny/pages/app.dart';
 import 'package:funny/pages/video-detail/index.dart';
+import 'package:funny/pages/search/index.dart';
 
+const routeArgs = {};
 class FRoutes {
   static final routes = <String, WidgetBuilder>{
     '/': (BuildContext context) => App(),
@@ -9,6 +11,9 @@ class FRoutes {
 
   static final routers = <String, dynamic>{
     'videoDetail': (arguments) => VideoDetail(
+          routeArgs: arguments,
+        ),
+    'search': (arguments) => Search(
           routeArgs: arguments,
         )
   };

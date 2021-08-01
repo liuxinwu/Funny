@@ -46,6 +46,8 @@ class _HomeState extends State<Home> {
     _controller.jumpTo(currentClassify['offset'] ?? 0);
   }
 
+  // 渲染列表
+  // 需要优化渲染机制
   List<Widget> getListWidget() {
     final typeId = currentClassify["typeId"];
     switch (typeId) {

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '/components/fTabBar.dart';
 import '/pages/home/index.dart';
 import '/pages/my/index.dart';
+import '/components/fStatusBar.dart';
+
 
 // 包含 tabBar 的容器
 class App extends StatefulWidget {
@@ -33,16 +35,11 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    final double statusBarHeight = MediaQuery.of(context).padding.top;
 
     return Scaffold(
       body: Column(
         children: [
-          SizedBox(
-            height: statusBarHeight,
-            child:
-                Container(child: null, color: Theme.of(context).primaryColor),
-          ),
+          FStatusBar(),
           new Expanded(
             child: getBody(),
           ),
